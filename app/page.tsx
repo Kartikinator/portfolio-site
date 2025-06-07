@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image"
 import Link from "next/link"
-import { Github, Linkedin, Mail } from "lucide-react"
+import { Github, Linkedin, Mail, Menu, X } from "lucide-react";
+import { useState } from "react"
 
 import { Button } from "@/components/ui/button"
 import { ProjectCard } from "@/components/project-card"
@@ -10,36 +12,25 @@ import { TypingAnimation, RotatingTitle } from "@/components/typing-animation"
 import { InteractiveBackground } from "@/components/interactive-background"
 
 export default function Portfolio() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container mx-auto flex h-14 items-center">
-          <div className="mr-4 hidden md:flex">
-            <Link href="/" className="mr-6 flex items-center space-x-2">
-              <span className="font-bold text-xl">KG</span>
-            </Link>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
-              <Link href="#about" className="transition-colors hover:text-foreground/80">
-                About
-              </Link>
-              <Link href="#projects" className="transition-colors hover:text-foreground/80">
-                Projects
-              </Link>
-              <Link href="#experience" className="transition-colors hover:text-foreground/80">
-                Experience
-              </Link>
-              <Link href="#skills" className="transition-colors hover:text-foreground/80">
-                Skills
-              </Link>
-              <Link href="#contact" className="transition-colors hover:text-foreground/80">
-                Contact
-              </Link>
-            </nav>
-          </div>
-          <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-            <div className="w-full flex-1 md:w-auto md:flex-none">
-              <Button asChild variant="outline" className="hidden md:inline-flex">
+        <div className="container mx-auto flex h-14 items-center justify-between px-4">
+          <Link href="/" className="flex items-center space-x-2">
+            <span className="font-bold text-xl">KG</span>
+          </Link>
+          <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
+            <Link href="#about" className="transition-colors hover:text-foreground/80">About</Link>
+            <Link href="#projects" className="transition-colors hover:text-foreground/80">Projects</Link>
+            <Link href="#experience" className="transition-colors hover:text-foreground/80">Experience</Link>
+            <Link href="#skills" className="transition-colors hover:text-foreground/80">Skills</Link>
+            <Link href="#contact" className="transition-colors hover:text-foreground/80">Contact</Link>
+          </nav>
+          <div className="flex items-center space-x-2">
+            <div className="hidden md:flex items-center space-x-2">
+              <Button asChild variant="outline">
                 <Link href="#contact">Get in touch</Link>
               </Button>
             </div>
@@ -50,25 +41,44 @@ export default function Portfolio() {
                   <span className="sr-only">GitHub</span>
                 </div>
               </Link>
-              <Link
-                href="https://www.linkedin.com/in/kartikeya-gullapalli/"
-                target="_blank"
-                rel="noreferrer"
-                className="ml-2"
-              >
+              <Link href="https://www.linkedin.com/in/kartikeya-gullapalli/" target="_blank" rel="noreferrer" className="ml-2">
                 <div className="w-9 h-9 flex items-center justify-center rounded-md border transition-colors hover:bg-accent">
                   <Linkedin className="h-5 w-5" />
                   <span className="sr-only">LinkedIn</span>
                 </div>
               </Link>
             </nav>
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </Button>
+            </div>
           </div>
         </div>
+        {isMobileMenuOpen && (
+          <div className="md:hidden bg-background border-b">
+            <nav className="container mx-auto px-4 py-4 flex flex-col space-y-1">
+              <Link href="#about" className="block px-2 py-2 text-sm transition-colors hover:text-foreground/80" onClick={() => setIsMobileMenuOpen(false)}>About</Link>
+              <Link href="#projects" className="block px-2 py-2 text-sm transition-colors hover:text-foreground/80" onClick={() => setIsMobileMenuOpen(false)}>Projects</Link>
+              <Link href="#experience" className="block px-2 py-2 text-sm transition-colors hover:text-foreground/80" onClick={() => setIsMobileMenuOpen(false)}>Experience</Link>
+              <Link href="#skills" className="block px-2 py-2 text-sm transition-colors hover:text-foreground/80" onClick={() => setIsMobileMenuOpen(false)}>Skills</Link>
+              <Link href="#contact" className="block px-2 py-2 text-sm transition-colors hover:text-foreground/80" onClick={() => setIsMobileMenuOpen(false)}>Contact</Link>
+              <Button asChild variant="outline" className="w-full mt-3" onClick={() => setIsMobileMenuOpen(false)}>
+                <Link href="#contact">Get in touch</Link>
+              </Button>
+            </nav>
+          </div>
+        )}
       </header>
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative container mx-auto py-24 md:py-32 space-y-8 overflow-hidden">
+        <section className="relative container mx-auto px-4 py-24 md:py-32 space-y-8 overflow-hidden">
           <InteractiveBackground />
           <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center pointer-events-none">
             <div className="flex-1 space-y-4">
@@ -114,7 +124,7 @@ export default function Portfolio() {
 
         {/* About Section */}
         <section id="about" className="bg-muted/40 py-16 md:py-24">
-          <div className="container mx-auto space-y-6">
+          <div className="container mx-auto px-4 space-y-6">
             <h2 className="text-3xl font-bold tracking-tight text-center">About Me</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="space-y-4">
@@ -161,7 +171,7 @@ export default function Portfolio() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-16 md:py-24 container mx-auto">
+        <section id="projects" className="py-16 md:py-24 container mx-auto px-4">
           <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">Featured Projects</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <ProjectCard
@@ -193,7 +203,7 @@ export default function Portfolio() {
 
         {/* Experience Section */}
         <section id="experience" className="bg-muted/40 py-16 md:py-24">
-          <div className="container mx-auto">
+          <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">Work Experience</h2>
               <div className="space-y-8">
@@ -238,7 +248,7 @@ export default function Portfolio() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="py-16 md:py-24 container mx-auto">
+        <section id="skills" className="py-16 md:py-24 container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">Technical Skills</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
@@ -280,7 +290,7 @@ export default function Portfolio() {
 
         {/* Contact Section */}
         <section id="contact" className="bg-muted/40 py-16 md:py-24">
-          <div className="container mx-auto">
+          <div className="container mx-auto px-4">
             <div className="max-w-2xl mx-auto text-center space-y-6">
               <h2 className="text-3xl font-bold tracking-tight">Get In Touch</h2>
               <p className="text-lg text-muted-foreground">
@@ -308,7 +318,7 @@ export default function Portfolio() {
 
       {/* Footer */}
       <footer className="border-t py-6 md:py-0">
-        <div className="container mx-auto flex flex-col md:h-16 items-center md:flex-row md:justify-between">
+        <div className="container mx-auto px-4 flex flex-col md:h-16 items-center md:flex-row md:justify-between">
           <p className="text-sm text-muted-foreground">© 2025 Kartikeya Gullapalli. All rights reserved.</p>
           <div className="mt-4 md:mt-0 flex items-center">
 
