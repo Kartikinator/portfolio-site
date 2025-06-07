@@ -78,9 +78,9 @@ export default function Portfolio() {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative container mx-auto px-4 py-24 md:py-32 space-y-8 overflow-hidden">
+        <section className="relative container mx-auto px-4 pt-12 pb-24 md:py-32 space-y-8 overflow-hidden">
           <InteractiveBackground />
-          <div className="relative z-10 flex flex-col md:flex-row gap-8 items-center pointer-events-none">
+          <div className="relative z-10 flex flex-col-reverse md:flex-row gap-8 items-center pointer-events-none">
             <div className="flex-1 space-y-4">
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
                 <TypingAnimation text="Kartikeya Gullapalli" typingSpeed={80} />

@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-foreground">
-        <main className="max-w-7xl mx-auto py-8">
+        <main className="max-w-7xl mx-auto">
           {children}
         </main>
       </body>
