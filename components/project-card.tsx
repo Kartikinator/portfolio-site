@@ -38,20 +38,6 @@ export function ProjectCard({ title, description, image, tags, demoUrl, repoUrl 
             </Badge>
           ))}
         </div>
-        <div className="flex gap-3 pt-2">
-          <Button asChild size="sm" variant="outline" className="gap-1">
-            <Link href={demoUrl} target="_blank" rel="noreferrer">
-              <ArrowUpRight className="h-4 w-4" />
-              Demo
-            </Link>
-          </Button>
-          <Button asChild size="sm" variant="outline" className="gap-1">
-            <Link href={repoUrl} target="_blank" rel="noreferrer">
-              <Github className="h-4 w-4" />
-              Code
-            </Link>
-          </Button>
-        </div>
       </CardContent>
     </Card>
   )
