@@ -116,7 +116,7 @@ export default function Portfolio() {
         <section id="about" className="bg-muted/40 py-16 md:py-24">
           <div className="container mx-auto space-y-6">
             <h2 className="text-3xl font-bold tracking-tight text-center">About Me</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="space-y-4">
                 <p className="text-lg">
                   I'm a passionate software engineer and AI/ML specialist currently pursuing my B.S. in Electrical and
