@@ -10,11 +10,27 @@ import { SkillBar } from "@/components/skill-bar"
 import { ExperienceItem } from "@/components/experience-item"
 import { TypingAnimation, RotatingTitle } from "@/components/typing-animation"
 import { InteractiveBackground } from "@/components/interactive-background"
+import { StarryIntro } from '@/components/StarryIntro';
 
 export default function Portfolio() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+  const [mainContentVisible, setMainContentVisible] = useState(false);
+
+  const handleIntroFinished = () => {
+    setShowIntro(false);
+    // Delay setting main content visible to allow StarryIntro to fade out
+    setTimeout(() => setMainContentVisible(true), 50); // Small delay for CSS transition to pick up
+  };
+  if (showIntro) {
+    return <StarryIntro onFinished={handleIntroFinished} duration={10000} />;
+  }
+
   return (
-    <div className="min-h-screen bg-background">
+    <div 
+      className="min-h-screen bg-background transition-opacity duration-1000 ease-in-out"
+      style={{ opacity: mainContentVisible ? 1 : 0 }}
+    >
       {/* Header */}
       <header className="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto flex h-14 items-center justify-between px-4">
